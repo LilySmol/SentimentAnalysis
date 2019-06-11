@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using VkNet;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -18,13 +19,23 @@ namespace SentimentAnalysis
 
         public void authorization(string login, string password)
         {
-            api.Authorize(new ApiAuthParams
-            {
-                ApplicationId = 123456,
-                Login = login,
-                Password = password,
-                Settings = Settings.All
-            });
+			try
+			{
+				api.Authorize(new ApiAuthParams
+				{
+					ApplicationId = 123456,
+					Login = login,
+					Password = password,
+					Settings = Settings.All
+				});
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show("Error. PLease write again", e.Message);
+
+				throw;
+			}
+            
         }
 
         public DataTable getGroups()
