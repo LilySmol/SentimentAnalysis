@@ -37,6 +37,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.MaskedTextBox();
             this.buttonExport = new System.Windows.Forms.Button();
+            this.buttonImport = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComments)).BeginInit();
             this.SuspendLayout();
@@ -121,12 +124,27 @@
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.ButtonExport_Click);
             // 
+            // buttonImport
+            // 
+            this.buttonImport.Location = new System.Drawing.Point(313, 36);
+            this.buttonImport.Name = "buttonImport";
+            this.buttonImport.Size = new System.Drawing.Size(178, 23);
+            this.buttonImport.TabIndex = 10;
+            this.buttonImport.Text = "Import vocabulary";
+            this.buttonImport.UseVisualStyleBackColor = true;
+            this.buttonImport.Click += new System.EventHandler(this.ButtonImport_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 374);
+            this.Controls.Add(this.buttonImport);
             this.Controls.Add(this.buttonExport);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
@@ -156,6 +174,9 @@
         private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.MaskedTextBox textBox2;
 		private System.Windows.Forms.Button buttonExport;
-	}
+        private System.Windows.Forms.Button buttonImport;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveDialog;
+    }
 }
 
