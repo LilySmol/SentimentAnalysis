@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SentimentAnalysis
 {
@@ -39,13 +40,13 @@ namespace SentimentAnalysis
                 switch (LargestIndexInColumn(iCol, arr))
                 {
                     case 0://радость
-                        pos.Add(col[iCol]);
+                        pos.Add(col[iCol].ToLower());
                         break;
                     case 1://грусть
                     case 2://злость
                     case 3://страх
                     case 4://отвращение
-                        neg.Add(col[iCol]);
+                        neg.Add(col[iCol].ToLower());
                         break;
                     default:
                         break;
@@ -82,7 +83,7 @@ namespace SentimentAnalysis
             int negativeCount = 0;
             foreach (string positiveWord in pos)
             {
-                if (text.Contains(positiveWord.ToLower()))
+                if (text.Contains(positiveWord))
                 {
                     positiveCount++;
                 }
@@ -90,7 +91,7 @@ namespace SentimentAnalysis
             Console.WriteLine("Npos {0}", positiveCount);
             foreach (string negativeWord in neg)
             {
-                if (text.Contains(negativeWord.ToLower()))
+                if (text.Contains(negativeWord))
                 {
                     negativeCount++;
                 }
@@ -105,6 +106,6 @@ namespace SentimentAnalysis
                 return "positive";
             }           
             return "negative";
-        }
+        }        
     }
 }

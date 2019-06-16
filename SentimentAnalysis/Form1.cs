@@ -22,6 +22,8 @@ namespace SentimentAnalysis
         public Form1()
         {
             InitializeComponent();
+            //string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            //MessageBox.Show(path);//
             Import();
             SentimentAnalysis.setVocabulary(columnNames, valueArray);
         }
@@ -150,7 +152,7 @@ namespace SentimentAnalysis
                 xlApp = new Excel.Application();
 
                 // Open the excel file
-                xlWorkBook = xlApp.Workbooks.Open("C:\\Users\\newLenovo\\Downloads\\ENRuNdatabase.xlsx", 0, true);
+                xlWorkBook = xlApp.Workbooks.Open(Environment.CurrentDirectory+"\\ENRuNdatabase.xlsx", 0, true);
 
                 if (xlWorkBook.Worksheets != null
                     && xlWorkBook.Worksheets.Count > 0)
