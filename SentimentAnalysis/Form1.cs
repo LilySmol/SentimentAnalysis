@@ -22,7 +22,8 @@ namespace SentimentAnalysis
         public Form1()
         {
             InitializeComponent();
-            //ImportVocabulary();
+            Import();
+            SentimentAnalysis.setVocabulary(columnNames, valueArray);
         }
 
         private void button1_Click(object sender, EventArgs e) //авторизоваться и получить список групп пользователя
@@ -62,7 +63,6 @@ namespace SentimentAnalysis
             {
                 SentimentAnalysis sentimentAnalysis = new SentimentAnalysis();   
                 dataGridViewComments.Rows.Add(comment, sentimentAnalysis.getEmotion(comment));
-                sentimentAnalysis.setVocabulary(columnNames,valueArray);
             }
         }
         //До  RUN app добавить ссылку в Project - MS Office Object.. Подробнее тут в коментах http://www.cyberforum.ru/windows-forms/thread1026783.html
@@ -138,6 +138,9 @@ namespace SentimentAnalysis
 
         private void ButtonImport_Click(object sender, EventArgs e)//ImportVocabulary()
         {
+            Import();
+        }
+        private void Import() {
             Excel.Application xlApp = new Excel.Application();
             Excel.Workbook xlWorkBook = null;
 
@@ -158,10 +161,10 @@ namespace SentimentAnalysis
                     Excel.Worksheet dataSheet = xlWorkBook.Sheets[2];
                     // Get range of data in the worksheet
                     int rowN = dataSheet.UsedRange.Rows.Count;// - все ячейки, где значения не null
-                    valueArray = new double[rowN-2,5];
-                    for (int i = 0; i < 5; i++)
+                    valueArray = new double[5, rowN - 2];
+                    for (int i = 0; i < 6; i++)
                     {
-                        int[] maximum = new int[] { };
+                        //int[] maximum = new int[] { };
                         Excel.Range dataRange = dataSheet.get_Range(emot_arr[i] + "3:" + emot_arr[i] + rowN);// + ",M3:M" + rowN + ",S3:S" + rowN + ",Y3:Y" + rowN + ",AE3:AE" + rowN); 
                         // Read all data from data range in the worksheet
                         // Get the values.
@@ -172,8 +175,8 @@ namespace SentimentAnalysis
                             if (i==0)
                                 columnNames.Add(val);
                             else { 
-                                valueArray[j - 1,i - 1] = Math.Round(Convert.ToDouble(val), 2);// объект Range = несколько ячеек, возвращает массив значений
-                                maximum[i-1] = (valueArray[j - 1, i - 1]>maximum[i-1])?valueArray[j-1, i-1];
+                                valueArray[i - 1,j - 1] = Math.Round(Convert.ToDouble(val), 2);// объект Range = несколько ячеек, возвращает массив значений
+                                //maximum[i-1] = (valueArray[j - 1, i - 1]>maximum[i-1])?valueArray[j-1, i-1];
                             }
                         }
                     }
@@ -192,6 +195,7 @@ namespace SentimentAnalysis
                         // Close the workbook after job is done
                         xlWorkBook.Close();
                         xlApp.Quit();
+                        MessageBox.Show("Успешная загрузка словаря");
                     }
 
                     // Now you have column names or to say first row values in this:
